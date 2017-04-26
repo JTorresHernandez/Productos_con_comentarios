@@ -1,0 +1,12 @@
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+
+
+app.post:
+    resource: "@AppBundle/Controller/ProductoController.php"
+    type: annotation
+    prefix: /
+app.comment:
+    resource: "@AppBundle/Controller/ComentarioController.php"
+    type: annotation
+    prefix: /comentario

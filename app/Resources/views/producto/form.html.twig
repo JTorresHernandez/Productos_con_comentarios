@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+{%  block title %}Form producto {% endblock %}
+{%  block body  %}
+
+    <div>
+        <form method="post" action="{{ action }}" novalidate="novalidate">
+            <div>
+
+
+            </div>
+            <div>{{ form_label(form.titulo) }}: {{ form_widget(form.titulo, {'attr' : { 'class' : 'anyClass2'}}) }}</div>
+
+            <div>{{ form_label(form.tipo) }} : {{ form_widget(form.tipo) }}</div>
+
+            <div>{{ form_label(form.precio) }} : {{ form_widget(form.precio) }}</div>
+
+            <div>{{ form_label(form.descripcion) }} : {{ form_widget(form.descripcion) }}</div>
+             {{ form_rest(form) }}
+
+
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} Productos {% endblock %}
+{% block body %}
+<h1> Productos</h1>
+{% for producto in productos %}
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <tr>
+                <h4><div style="margin-left: 80%; color:darkblue;text-decoration: underline;"> <b>Autor:</b> <td style="text-color:black;">{{ producto.autor }}</td></div> <br></h4>
+                <h3><b>Titulo:</b> <td>{{ producto.titulo }}</td></h3> <br>
+                <b>Tipo:</b> <td>{{ producto.tipo }}</td> <br>
+                <b>Precio:</b> <td>{{ producto.precio }}€</td> <br>
+                <b>Descripcion:</b>  <td>{{ producto.descripcion }}</td> <br>
+                <b>Fecha de creacion: </b><td>{{ producto.createdAt|date('d/m/Y H:i:s') }}</td> <br>
+                <b>Fecha de ultima actualizacion: </b><td>{{ producto.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
+                {% if (app.user == producto.autor) or (app.user == "torres") %}
+                    <td><a  href="{{ path('app_producto_actualizar', {'id': producto.id}) }}"> actualizar</a> </td>
+                    <td><a href="{{ path('app_producto_eliminar', {'id': producto.id}) }}"> eliminar</a> </td> <br><br>
+                {%   endif %}
+            </tr>
+        </div>
+
+
+    {% for comentario in producto.getComentario %}
+
+        <div class ="row" style="margin: 1%!important;">
+        <div class ="col-md-7 col-lg-7" >
+            <span >{{ comentario.getMessage }}</span>
+
+        </div>
+        <div class ="col-md-2 col-lg-2">
+            <span style="margin-left: 120%;">{{ comentario.getUpdatedAt|date("d/m/y") }}</span>
+            <span style="color:green; margin-left: 120%;">{{ comentario.getCreator }}</span>
+
+        </div>
+
+        {% if (comentario.getCreator == app.user) or (app.user == 'torres') or (app.user == producto.getAutor)%}
+            <div class ="col-md-1 col-lg-1">
+                <span> <a class="btn btn-default" style="margin-left: 230%;" href="{{ path('app_comentario_eliminar', {'id' : comentario.getId }) }}">Eliminar</a></span>
+            </div>
+
+        {% endif %}
+        </div>
+    {% endfor %}
+
+    {% if app.user %}
+    <form action="{{ path('app_comentario_crearAction', {'id' : producto.id}) }}" method="post">
+        <div class="input-group">
+
+            <button type="submit" style="position:absolute; width: 59.5%;  height: 99%;">Comentar</button><input type="text" class="form-control" maxlength="60"name ="messageInput" style="width:320%;">
+        </div>
+    </form>
+    </div>
+
+    {% endif %}
+
+{% endfor %}
+
+<div>
+    <h3><a style="margin-left: 38%; position:absolute;"href="{{ path('app_producto_añadir') }}">Nuevo producto</a></h3>
+</div>
+{% endblock %}
