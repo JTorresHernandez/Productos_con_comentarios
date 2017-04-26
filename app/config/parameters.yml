@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: comentarios_final
+    database_user: root
+    database_password: Asix1
+    mailer_transport: gmail
+    mailer_host: null
+    mailer_user: yourgmailuser@gmail.com
+    mailer_password: yourpassword
+    secret: 987654321
