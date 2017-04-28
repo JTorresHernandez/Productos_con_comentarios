@@ -52,7 +52,7 @@ class ComentarioController extends Controller
         public function eliminarCAction(Comentario $comentario) {
 
             $Producto = $comentario->getProducto();
-            if ($this->getUser() == $comentario->getCreator() or $this->getUser() == 'torres' or $this->getUser() == $Producto->getAutor()){
+            if ($this->getUser() == $comentario->getCreator() or $this->getUser() == 'admin' or $this->getUser() == $Producto->getAutor()){
                 $m = $this->getDoctrine()->getManager();
                 $m->remove($comentario);
                 $m->flush();

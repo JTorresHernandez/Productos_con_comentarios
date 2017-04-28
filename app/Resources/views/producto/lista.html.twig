@@ -15,7 +15,7 @@
                 <b>Descripcion:</b>  <td>{{ producto.descripcion }}</td> <br>
                 <b>Fecha de creacion: </b><td>{{ producto.createdAt|date('d/m/Y H:i:s') }}</td> <br>
                 <b>Fecha de ultima actualizacion: </b><td>{{ producto.updatedAt|date('d/m/Y H:i:s') }}</td> <br>
-                {% if (app.user == producto.autor) or (app.user == "torres") %}
+                {% if (app.user == producto.autor) or (app.user == "admin") %}
                     <td><a  href="{{ path('app_producto_actualizar', {'id': producto.id}) }}"> actualizar</a> </td>
                     <td><a href="{{ path('app_producto_eliminar', {'id': producto.id}) }}"> eliminar</a> </td> <br><br>
                 {%   endif %}
@@ -37,7 +37,7 @@
 
         </div>
 
-        {% if (comentario.getCreator == app.user) or (app.user == 'torres') or (app.user == producto.getAutor)%}
+        {% if (comentario.getCreator == app.user) or (app.user == 'admin') or (app.user == producto.getAutor)%}
             <div class ="col-md-1 col-lg-1">
                 <span> <a class="btn btn-default" style="margin-left: 230%;" href="{{ path('app_comentario_eliminar', {'id' : comentario.getId }) }}">Eliminar</a></span>
             </div>

@@ -96,7 +96,7 @@ class ProductoController extends Controller
 
         $form = $this->createForm(ProductoType::class, $Producto);
         $user = $this->getUser();
-        if($Producto->getAutor() == $user || $user == 'torres') {
+        if($Producto->getAutor() == $user || $user == 'admin') {
         return $this->render(':producto:form.html.twig',
             [
 
@@ -158,7 +158,7 @@ class ProductoController extends Controller
         $repo = $m->getRepository('AppBundle:Producto');
 
         $Producto = $repo->find($id);
-        if($Producto->getAutor() == $this->getUser() || $this->getUser() == 'torres' ) {
+        if($Producto->getAutor() == $this->getUser() || $this->getUser() == 'admin' ) {
             $m->remove($Producto);
             $m->flush();
 
