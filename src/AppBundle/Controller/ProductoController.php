@@ -101,7 +101,7 @@ class ProductoController extends Controller
             [
 
                 'form' => $form->CreateView(),
-                'action' => $this->generateUrl('app_producto_añadirlo', ['id' => $id]),
+                'action' => $this->generateUrl('app_producto_actualizarlo', ['id' => $id]),
             ]);
         } else {
                     return $this->redirectToRoute('app_producto_lista');
